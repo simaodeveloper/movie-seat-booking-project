@@ -1,9 +1,9 @@
 {
-  "name": "green-thumb",
+  "name": "Boilerplate Front-End Application",
   "version": "1.0.0",
-  "description": "A plant simulator make with JavaScript",
+  "description": "",
   "main": "index.js",
-  "repository": "git@github.com:simaodeveloper/green-thumb.git",
+  "repository": "git@github.com:simaodeveloper/boilerplate-frontend-application.git",
   "author": "Daniel Simão <simaodeveloper@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,6 @@
     "clear:dist": "rm -rf ./dist",
     "watch:dev": "yarn run clear:dist && webpack-dev-server --open --port 5002",
     "build:dist": "yarn run clear:dist && webpack --mode production",
-    "deploy": "yarn run build:dist && npx surge ./dist --domain https://greenthumb2.surge.sh"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
