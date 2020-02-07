@@ -1,23 +1,10 @@
-
-/*
-  Breakpoints
-*/
-$breakpoint-mobile-small: 320px;
-$breakpoint-mobile-medium: 360px;
-$breakpoint-mobile: 375px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
-
-$breakpoint-height-iphoneX: 812px;
-$breakpoint-height-iphone5: 568px;
-
 /*
   Base Colors
 */
 $color-default: #ffffff;
-$color-primary: #15573F;
-$color-second: #FD9872 ;
-$color-third: #7BAF9E;
+$color-primary: #15573f;
+$color-second: #fd9872;
+$color-third: #7baf9e;
 $color-fourth: #6e6e6e;
 $color-fifth: #0b251c;
 $color-sixth: #f6f6f6;
@@ -29,7 +16,6 @@ $color-seventh: #919191;
 
 $text-color-default: $color-fourth;
 $text-color-primary: $color-fifth;
-
 
 /*
   Background

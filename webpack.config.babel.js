@@ -3,12 +3,11 @@ import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import HandlebarsWebpackPlugin from 'handlebars-webpack-plugin';
 import SVGSpritemapPlugin from 'svg-spritemap-webpack-plugin';
 import ImageminPlugin from 'imagemin-webpack-plugin';
-import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
 import sass from 'sass';
+import data from './src/data';
 
 export default (argv, mode) => ({
   entry: ['@babel/polyfill', './src/entry.js'],
@@ -31,16 +30,20 @@ export default (argv, mode) => ({
         },
       },
       {
-        test: /\.hbs$/,
-        loader: 'handlebars-loader',
-        query: {
-          inlineRequires: '/images/',
-          rootRelative: './src/templates/',
-          partialDirs: [
-            './src/templates/includes',
-            './src/templates/components',
-          ],
-        },
+        test: /\.njk$/,
+        use: [
+          {
+            loader: 'nunjucks-isomorphic-loader',
+            query: {
+              root: [
+                path.resolve(__dirname, 'src/templates/'),
+                path.resolve(__dirname, 'src/templates/includes'),
+                path.resolve(__dirname, 'src/templates/layouts'),
+                path.resolve(__dirname, 'src/templates/components'),
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -78,6 +81,29 @@ export default (argv, mode) => ({
       filename: `styles/[name].[hash:8].css`,
       esModule: true,
     }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      minify:
+        mode === 'development'
+          ? false
+          : {
+              collapseWhitespace: true,
+              removeComments: true,
+            },
+      template: './src/templates/index.njk',
+      templateParameters: (compilation, assets, assetTags, options) => {
+        return {
+          compilation,
+          webpackConfig: compilation.options,
+          htmlWebpackPlugin: {
+            tags: assetTags,
+            files: assets,
+            options,
+          },
+          ...data,
+        };
+      },
+    }),
     new SVGSpritemapPlugin(
       path.resolve(__dirname, 'src/assets/images/icons/**/*.svg'),
       {
@@ -99,27 +125,6 @@ export default (argv, mode) => ({
     ]),
     new ImageminPlugin({
       test: '/.(jpe?g|png|gif|svg)$/i',
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'dist', 'index.html'),
-      filename: path.join(__dirname, 'dist', 'index.html'),
-      prefetch: true,
-      inject: true,
-    }),
-    new HandlebarsWebpackPlugin({
-      entry: path.join(process.cwd(), 'src', 'templates', 'index.hbs'),
-      output: path.join(process.cwd(), 'dist', '[name].html'),
-      data: path.join(__dirname, 'src/data.json'),
-      partials: [
-        path.join(process.cwd(), 'src', 'templates', 'includes', '*.hbs'),
-        path.join(process.cwd(), 'src', 'templates', 'components', '*.hbs'),
-      ],
-    }),
-    new FaviconsWebpackPlugin({
-      logo: './src/assets/images/favicon.png',
-      outputPath: '/images/',
-      prefix: '/images/',
-      cache: mode !== 'development',
     }),
   ],
 });
