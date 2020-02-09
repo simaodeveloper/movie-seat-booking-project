@@ -6,10 +6,9 @@ const METHODS = {
 };
 
 export const MESSAGES = {
-  EVENT_NOT_EXIST: "This event don't exist!",
+  GET_EVENT_NOT_EXIST: event => `The ${event} event don't exist!`,
   ARGUMENTS_NOT_PROVIDED: 'Please, provide the correctly parameters!',
   HANDLER_NOT_DEFINED: "This event don't have any handler!",
-  EVENT_NOT_HAVE_HANDLERS: "This event don't have any handler!",
 };
 
 export default class Emitter {
@@ -42,7 +41,7 @@ export default class Emitter {
 
   [METHODS.OFF](event, fn) {
     if (!this.events[event]) {
-      throw new Error(MESSAGES.EVENT_NOT_EXIST);
+      throw new Error(MESSAGES.GET_EVENT_NOT_EXIST(event));
     }
 
     if (!fn) {
@@ -65,11 +64,7 @@ export default class Emitter {
 
   [METHODS.DISPATCH](event, ...args) {
     if (!this.events[event]) {
-      throw new Error(MESSAGES.EVENT_NOT_EXIST);
-    }
-
-    if (!this.events[event].length) {
-      throw new Error(MESSAGES.HANDLER_NOT_DEFINED);
+      this.on(event, () => {});
     }
 
     this.events[event].forEach(fn => fn(...args));

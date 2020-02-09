@@ -12,11 +12,18 @@
 @import 'base/general';
 @import 'base/images';
 
+@import 'objects/row';
+@import 'objects/screen';
+@import 'objects/wrapper';
 @import 'objects/colors';
 @import 'objects/loaders';
 @import 'objects/containers';
 
-@import 'components/buttons';
+@import 'components/seat';
+@import 'components/warning';
+@import 'components/seats';
+@import 'components/showcase';
+@import 'components/movie';
 
 @import 'trumps/texts';
 @import 'trumps/validate';

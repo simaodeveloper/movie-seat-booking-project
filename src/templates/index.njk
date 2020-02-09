@@ -1,6 +1,14 @@
 {% extends "layouts/base.njk" %}
 
+{% block header %}{% endblock %}
+
 {% block content %}
-  <main class="wrapper index"></main>
+  <main class="wrapper">
+    {% include 'components/movie.njk' %}
+    {% include 'components/showcase.njk' %}
+    {% include 'components/seats.njk' %}
+    {% include 'components/warning.njk' %}
+  </main>
 {% endblock %}
 
+{% block footer %}{% endblock %}

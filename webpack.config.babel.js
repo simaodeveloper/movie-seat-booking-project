@@ -5,6 +5,8 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import SVGSpritemapPlugin from 'svg-spritemap-webpack-plugin';
 import ImageminPlugin from 'imagemin-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import sass from 'sass';
 import data from './src/data';
@@ -126,5 +128,7 @@ export default (argv, mode) => ({
     new ImageminPlugin({
       test: '/.(jpe?g|png|gif|svg)$/i',
     }),
+    // new CompressionPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 });

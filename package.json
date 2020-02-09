@@ -1,9 +1,9 @@
 {
-  "name": "boilerplate-frontend-application",
+  "name": "movie-seat-booking-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "repository": "git@github.com:simaodeveloper/boilerplate-frontend-application.git",
+  "repository": "git@github.com:simaodeveloper/movie-seat-booking-project.git",
   "author": "Daniel Simão <simaodeveloper@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -11,7 +11,8 @@
     "test:watch": "yarn test --watch",
     "clear:dist": "rm -rf ./dist",
     "watch:dev": "yarn run clear:dist && webpack-dev-server --open --port 5002",
-    "build:dist": "yarn run clear:dist && webpack --mode production"
+    "build:dist": "yarn run clear:dist && webpack --mode production",
+    "deploy": "yarn run build:dist && npx surge ./dist --domain https://movie-seat-booking-project.surge.sh"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
@@ -26,6 +27,7 @@
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
+    "compression-webpack-plugin": "^3.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "core-js": "3",
     "css-loader": "^3.4.2",
@@ -60,6 +62,7 @@
     "stylelint-prettier": "^1.1.2",
     "svg-spritemap-webpack-plugin": "^3.5.3",
     "webpack": "^4.41.5",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   }

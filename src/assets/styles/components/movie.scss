@@ -1,0 +1,13 @@
+.movie {
+  margin: 20px 0;
+
+  &__select {
+    background-color: #fff;
+    border: 0;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+    padding: 5px 15px;
+    appearance: none;
+  }
+}

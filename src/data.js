@@ -1,9 +1,9 @@
 export default {
   base: '/',
-  title: 'Boilerplate Front-End Application',
-  description: 'Made with love and a night without sleep',
+  title: 'Movie Seat Booking Project',
+  description: 'Made with ES6, LocalStorage, SASS, Webpack',
   share: {
-    title: 'Boilerplate Front-End Application',
+    title: 'Movie Seat Booking Project',
     description: '',
     image: '',
   },
